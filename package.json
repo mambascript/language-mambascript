@@ -3,6 +3,7 @@
   "displayName": "language-mambascript",
   "description": "Language Support For MambaScript",
   "version": "0.0.1",
+  "main": "language-configuration.json",
   "engines": {
     "vscode": "^1.75.0"
   },
