@@ -20,7 +20,11 @@
       "id": "mamba",
       "aliases": ["MambaScript", "mamba"],
       "extensions": [".mamba",".kofu"],
-      "configuration": "./language-configuration.json"
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "./snippets/icon.png",
+        "dark": "./snippets/icon.png"
+      }
     }],
     "grammars": [{
       "language": "mamba",
