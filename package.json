@@ -2,8 +2,13 @@
   "name": "language-mambascript",
   "displayName": "language-mambascript",
   "description": "Language Support For MambaScript",
-  "version": "0.0.1",
-  "main": "language-configuration.json",
+  "version": "0.0.3",
+  "main": "index.js",
+  "author": {
+    "name": "Arthur Bernier Jr",
+    "email": "ma2bernier@gmail.com"
+  },
+  "license": "MIT",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -21,6 +26,12 @@
       "language": "mamba",
       "scopeName": "source.mamba",
       "path": "./syntaxes/mamba.tmLanguage.json"
-    }]
+    }],
+    "snippets": [
+			{
+				"language": "mamba",
+				"path": "./snippets/language-mambascript.json"
+			}
+		]
   }
 }

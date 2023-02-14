@@ -1,65 +1,329 @@
 # language-mambascript README
 
-This is the README for your extension "language-mambascript". After writing up a brief description, we recommend including the following sections.
+This is the README for extension "language-mambascript"
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Adds syntax highlighting and snippets to MambaScript files in VSCODE.
 
-For example if there is an image subfolder under your extension project workspace:
+# Basic MambaScript
 
-\!\[feature X\]\(images/feature-x.png\)
+## Values and Variables
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Values can have different datatypes and their are 6 basic types in MambaScript
 
-## Requirements
+### Numbers
+Numbers are written the way numbers are usually written
+```coffee
+144
+```
+### Strings
+Strings are used for storing and manipulating text. A String in MambaScript is
+zero or more characters written inside of quotes.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+```coffee
+goat = 'Kobe Bryant'
+```
 
-## Extension Settings
+You can use either single or double quotes:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+```coffee
+carName1 = 'Mercedes Benz S550'
+carName2 = "Tesla Model S"
+```
 
-For example:
+You can also create multiline strings with either triple single quotes, or triple
+double quotes.
 
-This extension contributes the following settings:
+```coffee
+theRaven = '''
+    Once upon a midnight dreary while I pondered, weak and weary,
+    Over many quaint and curious volume of forgotten lore -
+    While I nodded, nearly napping, suddenly there came a tapping,
+    As of some one gently rapping, rapping at my chamber door
+    "'Tis some visiter". I muttered, "tapping at my chamber door" -
+    "only this and nothing more."
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+    Ah distinctly I remember it was in the bleak December;
+    And each separate dying ember wrought its ghost upon the floor.
+    Eagerly I wished the morrow - vainly I had sought to borrow,
+    From my books surcease of sorrow - sorrow For the lost Lenore -
+    For the rare and radiant maiden whom the angels name Lenore -
+    Nameless here For evermore
+'''
 
-## Known Issues
+hamlet = """
+    To be or not to be, that is the question
+    Whether tis Nobler in the mind to suffer
+    The Slings and Arrows of outrageous Fortune,
+    Or to take Arms against a Sea of troubles,
+    And By opposing end them, to die, to sleep
+    No more. and By a sleep, to say we end
+    The heart-ache and the thousand Natural shocks
+    That Flesh is heir to?
+"""
+```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Booleans
+A MambaScript Boolean represents one of two types of values: `truthy and falsey`
 
-## Release Notes
+Truthy values are values that the MambaScript compiler considers `true` and are of
+the type Boolean. `yes, on and true`
 
-Users appreciate release notes as you update your extension.
+Falsey values are values that the MambaScript compiler considers `false` and are of
+the type Boolean. `no, off and false`
 
-### 1.0.0
+```coffee
+present '------- is  and Booleans --------'
+present 'Truthy Booleans true, on, yes'
+present 'Falsey Booleans false, off, no'
+present true is on
+present true is yes
+present false is off
+present false is no
+```
 
-Initial release of ...
+### Objects
 
-### 1.0.1
+Objects in MambaScript are a way to store data that in an individual container
 
-Fixed issue #.
+```coffee
+obj =  {
+  "MambaScript": "JavaScript"
+  "is": "==="
+  "isnt":	"!=="
+  "not":	"!"
+  "and also":	"&&"
+  "or":	"||"
+  "true yes on":	"true"
+  "false no off":	"false"
+  "@ this": 	"this"
+  "of": "in"
+  "in": "no JS Equivalent"
+}
+```
 
-### 1.1.0
+### Functions
+Functions are one of the fundamental building blocks in MambaScript. A function in MambaScript is similar to a procedure—a set of statements that performs a task or calculates a value, but for a procedure to qualify as a function, it should take some input and return an output where there is some obvious relationship between the input and the output. To use a function, you must define it somewhere in the scope from which you wish to call it.
+```coffee
+# eat is a function that accepts a string and returns nothing
+eat :: String -> () = (food :: String ) ->
+  present "yum #{food.toUpperCase()} !!!"
 
-Added features X, Y, and Z.
+eat food forEvery food in ['toast', 'cheese', 'wine']
 
----
+eat food forEvery food in  ['toast', 'cheese', 'wine'] when food isnt 'cheese'
+```
+### Undefined and Null Values
+```coffee
+a :: Int?
+a = 1
+a = null
 
-## Working with Markdown
+b :: Int = 1
+# b = a # can't assign nullable to non-nullable
+a = b
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+listWithNull :: Int?[] = [1, 2, 3, null, 5]
+listMaybeNull :: Int?[]? = null
+listMaybeNull = listWithNull
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+intByConditional :: Int =
+  if Math.random() > 0.5
+    1
+  else
+    2
 
-## For more information
+# can't be Int
+nullableIntByConditional :: Int? =
+  if Math.random() > 0.5
+    1
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+intBySwitch :: Int =
+  switch ~~(Math.random()* 10)
+    when 1
+      1
+    when 2
+      2
+    else
+      3
 
-**Enjoy!**
+# can't be Int
+nullableIntBySwitch :: Int? =
+  switch ~~(Math.random()* 10)
+    when 1
+      1
+    when 2
+      2
+```
+
+## Control Flow
+```coffee
+isCool = true
+
+# traditional if else
+if isCool
+  present 'You are cool'
+else
+  present 'You are lame'
+
+# ternary in MambaScript
+if isCool then present 'You are cool' else 'You are lame'
+
+# Unless is the opposite of if or the equivalent if !isCool
+unless isCool
+  present 'You are lame'
+else
+  present 'You are cool'
+
+# ternary with unless
+unless isCool then present 'You are lame' else present 'You are cool'
+
+# loops with when clause and function
+
+foods :: String[] = ['lettuce', 'filet mignon', 'steak', 'burger', 'pork chop']
+# function named printFood
+# It accepts a String and returns nothing 
+printFood :: String -> () = (food :: String ) -> present food
+
+printFood food forEvery food in foods when food isnt 'lettuce'
+```
+
+## What is a pessimistic type interface?
+
+To pass the dynamic type system, MambaScript expects symbol to be `implicit` node by default. If compiler compares implicit node type and implicit node type fails, it recovers to `implicit` `Any` automatically.
+
+## Examples
+
+### Assigment with type
+
+```coffee
+n :: Int = 3
+```
+
+### Pre defined symbol
+
+```coffee
+x :: Number
+x = 3.14
+```
+
+### Nullable
+
+```coffee
+x :: Number?
+x = 3.14
+x = null
+```
+
+### Typed Array
+
+```coffee
+list :: Int[] = [1..10]
+listWithNull :: Int?[] = [1, null, 3]
+```
+
+In `v0.10`, imperfect to struct.
+
+### Struct
+
+```coffee
+struct Point
+  @name :: String
+  x :: Number
+  y :: Number
+p :: Point = {x: 3, y: 3}
+name :: String = Point.name
+
+struct Point3d implements Point
+  z :: Number
+```
+
+### Module
+
+MambaScript has module system like TypeScript
+
+```coffee
+module A.B
+	class @C
+		a :: Int
+abc :: A.B.C = new A.B.C
+```
+
+### Typed Function
+
+```coffee
+# pre define
+f1 :: Int -> Int
+f1 = (n) -> n
+
+# annotation
+f2 :: Number -> Point = (n) -> x: n, y: n * 2
+
+# multi arguments
+f3 :: (Int, Int) -> Int = (m, n) -> m * n
+
+# another form of arguments
+f4 :: Int * Int -> Int = (m, n) -> m * n
+
+# partial applying
+fc :: Int -> Int -> Int
+fc = (m) -> (n) -> m * n
+```
+
+### Blueprint instead of class with this scope
+
+```coffee
+blueprint X
+  # bound to this
+  num :: Number
+  f   :: Number -> Number
+
+  f: (n) ->
+    @num = n
+
+x :: X = new X
+n :: Number = x.f 3
+```
+
+### Blueprint with implements
+
+```coffee
+blueprint Point
+  x :: Int
+  y :: Int
+
+struct Size
+  width  :: Int
+  height :: Int
+
+blueprint Entity inheritsFrom Point implements Size
+e :: {x :: Int, width :: Int} = new Entity
+```
+
+### Generics and type arguments
+
+```coffee
+# struct
+struct Value<T, U>
+	value :: U
+struct Id<A, B>
+	id :: Value<A, B>
+obj :: Id<Int, String> =
+  id:
+    value: 'value'
+
+# function type arguments
+map<T, U> :: T[] * (T -> U) -> U[]
+map = (list, fn) ->
+  for i in list
+    fn(i)
+list :: String[] = map<Int, String> [1..10], (n) -> 'i'
+
+# blueprint type arguments
+blueprint Blueprint<A>
+  f :: Int -> Int
+  constructor :: A -> ()
+  constructor: (a) ->
+c = new Blueprint<Int>(1)
+```
