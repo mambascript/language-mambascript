@@ -1,0 +1,25 @@
+{
+  "name": "language-mambascript",
+  "displayName": "language-mambascript",
+  "description": "Language Support For MambaScript",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "mamba",
+      "aliases": ["MambaScript", "mamba"],
+      "extensions": [".mamba",".kofu"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "mamba",
+      "scopeName": "source.mamba",
+      "path": "./syntaxes/mamba.tmLanguage.json"
+    }]
+  }
+}
