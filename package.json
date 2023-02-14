@@ -2,7 +2,7 @@
   "name": "language-mambascript",
   "displayName": "language-mambascript",
   "description": "Language Support For MambaScript",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "author": {
     "name": "Arthur Bernier Jr",
